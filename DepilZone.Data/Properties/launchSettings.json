@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DepilZone.Data": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+﻿using DepilZone.Entidad.DTO;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+
+namespace DepilZone.Application.Interface
+{
+    public interface IPlantillaApp
+	{
+		Task<List<PlantillaDTO>> Listar();
+		Task<List<PlantillaDTO>> ListarActivos();
+        Task<List<PlantillaDTO>> ListarByEstado(int idEstado);
+		Task<bool> Registrar(PlantillaDTO model);
+		Task<bool> Modificar(int id, PlantillaDTO model);
+	}
+}
