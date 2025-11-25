@@ -19,6 +19,8 @@ namespace DepilZone.Entidad.DTO
         public int? IdTeleoperador { get; set; }
         public int? IdComentario { get; set; }
         public int IdMedioContacto { get; set; }
+        public int? IdMedioRecontacto { get; set; }
+
         public int? IdMedioContactoCierre { get; set; }
         public string OtroMedioContacto { get; set; }
         public DateTime? FechaAsignacion { get; set; }
@@ -76,7 +78,7 @@ namespace DepilZone.Entidad.DTO
 
         public string Observacion { get; set; }
     }
-    
+
 
     public class PreferenteAsignarListaDTO
     {
@@ -115,7 +117,7 @@ namespace DepilZone.Entidad.DTO
     {
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-        public string Telefono { get; set; }        
+        public string Telefono { get; set; }
         public string Documento { get; set; }
         public List<string> Observacion { get; set; }
     }

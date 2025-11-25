@@ -20,6 +20,7 @@ namespace DepilZone.Entidad.DTO
         public string Distrito { get; set; }
         public string ZonaCorporal { get; set; }
         public string MedioContacto { get; set; }
+        public string? MedioRecontacto { get; set; }
         public string? MedioContactoCierre { get; set; }
         public int IdEstado { get; set; }
         public string EstadoAtencion { get; set; }

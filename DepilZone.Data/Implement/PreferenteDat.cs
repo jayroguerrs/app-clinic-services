@@ -156,6 +156,9 @@ namespace DepilZone.Data.Implement
                 cmd.Parameters.AddWithValue("IdTeleoperador", model.IdTeleoperador);
                 cmd.Parameters.AddWithValue("IdComentario", model.IdComentario);
                 cmd.Parameters.AddWithValue("IdMedioContacto", model.IdMedioContacto);
+
+                cmd.Parameters.AddWithValue("IdMedioRecontacto", model.IdMedioRecontacto);
+
                 cmd.Parameters.AddWithValue("IdMedioContactoCierre", model.IdMedioContactoCierre);
 
                 cmd.Parameters.AddWithValue("IdEstado", model.IdEstado);
@@ -881,6 +884,8 @@ namespace DepilZone.Data.Implement
                     obj.IdComentario = reader["IdComentario"] as int? ?? null;
                     obj.IdMedioContacto = Convert.ToInt32(reader["IdMedioContacto"]);
                     obj.IdMedioContactoCierre = reader["IdMedioContactoCierre"] != DBNull.Value ? Convert.ToInt32(reader["IdMedioContactoCierre"]) : null;
+                    obj.IdMedioRecontacto = reader["IdMedioRecontacto"] != DBNull.Value ? Convert.ToInt32(reader["IdMedioRecontacto"]) : null;
+
 
                     obj.IdEstado = Convert.ToInt32(reader["IdEstado"]);
                     obj.OtroMedioContacto = Convert.ToString(reader["OtroMedioContacto"]);
@@ -1136,7 +1141,11 @@ namespace DepilZone.Data.Implement
                         Distrito = reader["Distrito"].ToString(),
                         ZonaCorporal = reader["ZonaCorporal"].ToString(),
                         MedioContacto = Convert.ToString(reader["MedioContacto"]),
-                        MedioContactoCierre = reader["MedioContactoCierre"] != DBNull.Value ?  Convert.ToString(reader["MedioContactoCierre"]) : null,
+
+                        MedioRecontacto = reader["IdMedioRecontacto"] != DBNull.Value ? Convert.ToString(reader["IdMedioRecontacto"]) : null,
+
+
+                        MedioContactoCierre = reader["MedioContactoCierre"] != DBNull.Value ? Convert.ToString(reader["MedioContactoCierre"]) : null,
                         IdEstado = Convert.ToInt32(reader["IdEstado"]),
                         EstadoAtencion = Convert.ToString(reader["EstadoAtencion"]),
                         EsCliente = Convert.ToInt32(reader["EsCliente"]),

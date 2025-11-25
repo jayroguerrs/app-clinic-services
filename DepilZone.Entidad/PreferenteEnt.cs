@@ -18,6 +18,7 @@ namespace DepilZone.Entidad
         public int? IdTeleoperador { get; set; }
         public int? IdComentario { get; set; }
         public int IdMedioContacto { get; set; }
+        public int? IdMedioRecontacto { get; set; }
         public int? IdMedioContactoCierre { get; set; }
         public string OtroMedioContacto { get; set; }
         public DateTime? FechaAsignacion { get; set; }
@@ -25,7 +26,7 @@ namespace DepilZone.Entidad
         public DateTime FechaRegistra { get; set; }
         public string UsuarioEdita { get; set; }
         public DateTime? FechaEdita { get; set; }
-        public  int IdEstadoAtencion { get; set; }
+        public int IdEstadoAtencion { get; set; }
         public string Comentario { get; set; }
         public string? UsuFacebook { get; set; }
         public string? UsuInstagram { get; set; }

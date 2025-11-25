@@ -34686,6 +34686,10 @@ components:
         idMedioContacto:
           type: integer
           format: int32
+        idMedioRecontacto:
+          type: integer
+          format: int32
+          nullable: true
         idMedioContactoCierre:
           type: integer
           format: int32
@@ -34849,6 +34853,10 @@ components:
         idMedioContacto:
           type: integer
           format: int32
+        idMedioRecontacto:
+          type: integer
+          format: int32
+          nullable: true
         idMedioContactoCierre:
           type: integer
           format: int32
@@ -35010,6 +35018,9 @@ components:
           type: string
           nullable: true
         medioContacto:
+          type: string
+          nullable: true
+        medioRecontacto:
           type: string
           nullable: true
         medioContactoCierre:

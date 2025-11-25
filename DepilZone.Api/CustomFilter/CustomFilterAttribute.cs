@@ -49,7 +49,7 @@ namespace DepilZone.Api.CustomFilter
             //String ConnectionString = "Server=.;Database=PDBDepilZone090925;User ID=sa;password=123456;Connection Timeout=300;";
 
             // Server Local - PC2
-            //String ConnectionString = "Server=localhost\\SQLEXPRESS;Database=PDBDepilZone;User ID=sa;password=123456;Connection Timeout=300;";
+            String ConnectionString = "Server=localhost\\SQLEXPRESS;Database=PDBDepilZone;User ID=sa;password=123456;Connection Timeout=300;";
 
             // Docker
             //String ConnectionString = "Server=192.168.56.1,1433;Database=PDBDepilZone_250825;User ID=sa;password=123456;Connection Timeout=300;";    
@@ -57,7 +57,7 @@ namespace DepilZone.Api.CustomFilter
 
             //------------------------- PRODUCTION --------------------------
             // Windows Serv
-            String ConnectionString = "Server=52.149.219.141,1444;Database=PDBDepilZone;User ID=usrappclinic;Password=mT9B2x97A5$4;Connection Timeout=300;Encrypt=false;TrustServerCertificate=true;";
+            //String ConnectionString = "Server=52.149.219.141,1444;Database=PDBDepilZone;User ID=usrappclinic;Password=mT9B2x97A5$4;Connection Timeout=300;Encrypt=false;TrustServerCertificate=true;";
 
             // Cloud Azure
             //String ConnectionString = "Server=tcp:serv-alpha.database.windows.net,1433;Initial Catalog=sa-xiii;Persist Security Info=False;User ID=sa-xii;Password=#0A00Dwo},r@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"; 
