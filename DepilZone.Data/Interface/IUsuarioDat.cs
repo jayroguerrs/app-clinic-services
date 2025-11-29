@@ -42,6 +42,7 @@ namespace DepilZone.Data.Interface
         Task<byte> ObtenerEstadoAprobacionUsuario(int IdUsuario);
         Task<AccesoUsuarioDTO> ObtenerEstadoPrivilegioUsuario(int IdUsuario);
         Task<IEnumerable<SupervisorDTO>> ObtenerListadoSupervisores();
-
+        Task<GeneralResponse<ClaveGenericaResult>> GenerarClaveGenerica(int idUsuario);
+        Task<bool> CambiarClaveGenerica(int idUsuario, string clave);
     }
 }

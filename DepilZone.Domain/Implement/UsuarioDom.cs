@@ -147,6 +147,14 @@ namespace DepilZone.Domain
         {
             return await _IUsuarioDat.ObtenerListadoSupervisores();
         }
+        public async Task<GeneralResponse<ClaveGenericaResult>> GenerarClaveGenerica(int idUsuario)
+        {
+            return await _IUsuarioDat.GenerarClaveGenerica(idUsuario);
+        }
+        public async Task<bool> CambiarClaveGenerica(int idUsuario, string clave)
+        {
+            return await _IUsuarioDat.CambiarClaveGenerica(idUsuario, clave);
+        }
 
     }
 }

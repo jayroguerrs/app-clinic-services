@@ -23837,6 +23837,75 @@ paths:
                     type: string
                   statusCode:
                     type: integer
+  /api/Usuario/cambiar-clave-generica:
+    put:
+      tags:
+        - Usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioCambiarClaveDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioCambiarClaveDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UsuarioCambiarClaveDTO'
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Acceso denegado. No tienes autorización para acceder a este recurso.
+          content:
+            application/json:
+              schema:
+                required:
+                  - message
+                  - statusCode
+                type: object
+                properties:
+                  message:
+                    type: string
+                  statusCode:
+                    type: integer
+  '/api/Usuario/generarClaveGenerica/{idUsuario}':
+    put:
+      tags:
+        - Usuario
+      parameters:
+        - name: idUsuario
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClaveGenericaResultGeneralResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaveGenericaResultGeneralResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClaveGenericaResultGeneralResponse'
+        '401':
+          description: Acceso denegado. No tienes autorización para acceder a este recurso.
+          content:
+            application/json:
+              schema:
+                required:
+                  - message
+                  - statusCode
+                type: object
+                properties:
+                  message:
+                    type: string
+                  statusCode:
+                    type: integer
   '/api/Venta/numeroSerie/{idTipoComprobante},{idSede}':
     get:
       tags:
@@ -28957,6 +29026,25 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ClaveGenericaResult:
+      type: object
+      properties:
+        idUsuario:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ClaveGenericaResultGeneralResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+          nullable: true
+        data:
+          $ref: '#/components/schemas/ClaveGenericaResult'
+      additionalProperties: false
     ClientAsignadoCitaDTO:
       type: object
       properties:
@@ -33858,6 +33946,9 @@ components:
         captchaToken:
           type: string
           nullable: true
+        claveGenerica:
+          type: boolean
+          nullable: true
       additionalProperties: false
     MaquinaEnt:
       type: object
@@ -37249,6 +37340,9 @@ components:
           nullable: true
         fechaRegistra:
           type: string
+          nullable: true
+        claveGenrica:
+          type: boolean
           nullable: true
         value:
           type: string

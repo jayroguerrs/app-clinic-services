@@ -1266,6 +1266,8 @@ namespace DepilZone.Data
                         obj.Response.Aprobado = Convert.ToInt32(reader["Aprobado"]);
                         obj.Response.IdSupervisor = reader["IdSupervisor"] != DBNull.Value ? Convert.ToInt32(reader["IdSupervisor"]) : 0;
 
+                        obj.Response.ClaveGenerica = Convert.ToBoolean(reader["ClaveGenerica"]);
+
 
                         var menuJson = Convert.ToString(reader["Menu"]);
 
@@ -1661,6 +1663,8 @@ namespace DepilZone.Data
                         FechaRegistra = Convert.ToDateTime(reader["FechaRegistra"]).ToString("dd-MM-yyyy"),
                         IdSede = Convert.ToInt32(reader["IdSede"]),
                         Sede = reader["Sede"].ToString(),
+                        ClaveGenrica = Convert.ToBoolean(reader["ClaveGenerica"]),
+
                     };
                     lista.Add(obj);
                 }
@@ -1690,6 +1694,104 @@ namespace DepilZone.Data
                 }
 
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<GeneralResponse<ClaveGenericaResult>> GenerarClaveGenerica(int idUsuario)
+        {
+            try
+            {
+                using SqlConnection conn = GetConnection();
+                await conn.OpenAsync();
+                using SqlCommand cmd = new SqlCommand("SP_Usuario_Clave_Generica", conn)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("pIdUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("pParametro", DBConn.ParametroCripto());
+
+                var reader = await cmd.ExecuteReaderAsync();
+                var output = await ReadItemClaveGenerica(reader);
+
+                conn.Close();
+
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        static async Task<GeneralResponse<ClaveGenericaResult>> ReadItemClaveGenerica(DbDataReader reader)
+        {
+            try
+            {
+                GeneralResponse<ClaveGenericaResult> generalRes = new GeneralResponse<ClaveGenericaResult>
+                {
+                    Data = new ClaveGenericaResult()
+                };
+
+
+                if (await reader.ReadAsync())
+                {
+                    generalRes.Message = Convert.ToString(reader["Mensaje"]);
+                    generalRes.Status = 200;
+
+                    generalRes.Data.IdUsuario = Convert.ToInt32(reader["IdUsuario"]);
+                }
+
+                return generalRes;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<bool> CambiarClaveGenerica(int idUsuario, string clave)
+        {
+
+            try
+            {
+                using SqlConnection conn = GetConnection();
+                await conn.OpenAsync();
+                using SqlCommand cmd = new SqlCommand("SP_Usuario_CambiarClaveGenerica", conn)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("pIdUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("pClave", clave);
+                cmd.Parameters.AddWithValue("pParametro", DBConn.ParametroCripto());
+                var reader = await cmd.ExecuteReaderAsync();
+
+                bool Exito = false;
+                string mensaje = "";
+                string detalle = "";
+                int codigoError = 0;
+
+
+                while (await reader.ReadAsync())
+                {
+                    Exito = Convert.ToBoolean(reader["Exito"]);
+                    if (!Exito)
+                    {
+                        mensaje = Convert.ToString(reader["Mensaje"]);
+                        codigoError = Convert.ToInt32(reader["ErrorNumero"]);
+                        detalle = Convert.ToString(reader["ErrorDetalle"]);
+                        throw new AlertException(mensaje);
+
+                    }
+                }
+
+                conn.Close();
+
+                return Exito;
             }
             catch (Exception ex)
             {

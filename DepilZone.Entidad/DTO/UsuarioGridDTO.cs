@@ -19,6 +19,8 @@
         public string Perfil { get; set; }
         public string UsuarioRegistra { get; set; }
         public string FechaRegistra { get; set; }
+        public bool? ClaveGenrica { get; set; }
+
 
         // para NgSelect de Angular
         public string value

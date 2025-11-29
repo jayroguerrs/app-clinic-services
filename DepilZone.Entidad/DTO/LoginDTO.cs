@@ -27,6 +27,8 @@ namespace DepilZone.Entidad.DTO
         public int? Aprobado { get; set; }
         public int? IdSupervisor { get; set; }
         public string? CaptchaToken { get; set; }
+        public bool? ClaveGenerica { get; set; }
+
     }
 
     public class MenuUsuarioPadreDTO

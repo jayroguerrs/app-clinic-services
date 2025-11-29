@@ -319,5 +319,36 @@ namespace DepilZone.Api.Controllers
             return Ok(new { clave });
         }
 
+        [HttpPut("cambiar-clave-generica")]
+        public async Task<ActionResult> ActualizarClaveGenerica(UsuarioCambiarClaveDTO model)
+        {
+            try
+            {
+                return Ok(new
+                {
+                    data = await _usuario.CambiarClaveGenerica(model.IdUsuario, model.ClaveNueva),
+                    message = "",
+                    status = StatusCodes.Status200OK
+                });
+            }
+            catch (Exception EX)
+            {
+                return BadRequest(new
+                {
+                    data = new { },
+                    message = EX.Message,
+                    status = StatusCodes.Status400BadRequest
+                });
+            }
+        }
+
+        [HttpPut("generarClaveGenerica/{idUsuario}")]
+        public async Task<GeneralResponse<ClaveGenericaResult>> generarClaveGenerica(string idUsuario)
+        {
+            int idUsuarioInt = int.Parse(idUsuario);
+
+            return await _usuario.GenerarClaveGenerica(idUsuarioInt);
+        }
+
     }
 }
